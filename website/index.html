@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Devesh Dhole – Space plasma physics, Northumbria University</title>
+<meta name="description" content="Devesh Dhole is a PhD student at Northumbria University studying kinetic plasma turbulence and current sheets in the solar wind with hybrid particle-in-cell simulations and spacecraft data.">
+<meta name="author" content="Devesh Dhole">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Devesh Dhole – Space plasma physics, Northumbria University">
+<meta property="og:description" content="Devesh Dhole is a PhD student at Northumbria University studying kinetic plasma turbulence and current sheets in the solar wind with hybrid particle-in-cell simulations and spacecraft data.">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0c1220" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230c1220'/%3E%3Cpath d='M5 25C12 21 15 12 27 8' stroke='%23ff7262' stroke-width='3.5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M5 14C9 12 11 8 15 6' stroke='%237fa9ff' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- The header and footer are the same on every page: if you change the menu, change it in all five files. -->
+<header class="site-header wrap">
+  <a class="site-name" href="index.html">Devesh Dhole</a>
+  <nav class="site-nav" aria-label="Main">
+    <ul>
+      <li><a href="index.html" aria-current="page">Home</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="hero wrap" aria-labelledby="name">
+    <div class="intro">
+      <h1 id="name">Devesh Dhole</h1>
+      <p class="lead">I study turbulence in the solar wind: how energy cascading down from large scales collapses into thin current sheets near the scales of ions, and what a spacecraft sees when it flies through one.</p>
+      <p class="affil">PhD student in space plasma physics at Northumbria University, Newcastle upon Tyne, working with Luca Franci, Robert Wicks and Emanuele Papini.</p>
+      <!-- EDIT: check the email, put cv.pdf in this folder, and replace the "#" links with your profiles -->
+      <ul class="links">
+        <li><a href="mailto:devesh.dhole@northumbria.ac.uk">Email</a></li>
+        <li><a href="cv.pdf">CV (PDF)</a></li>
+        <li><a href="#">ORCID</a></li>
+        <li><a href="#">GitHub</a></li>
+      </ul>
+    </div>
+
+    <figure class="fig" id="fig1" aria-labelledby="fig1-caption">
+      <div class="fig-plot">
+        <canvas id="fig1-canvas" role="img" aria-label="Animated simulation of two-dimensional plasma turbulence. Thin red and blue filaments of electric current form between swirling magnetic islands, while a dot representing a spacecraft crosses the box and its measurements scroll past in two panels below the map.">Your browser can't display this animation.</canvas>
+      </div>
+      <div class="fig-controls">
+        <button type="button" id="fig1-play">Pause</button>
+        <button type="button" id="fig1-new">New run</button>
+        <button type="button" id="fig1-lines">Hide field lines</button>
+      </div>
+    </figure>
+
+    <div class="fig-caption" id="fig1-caption">
+      <p><span class="fig-label">Fig. 1.</span> A plasma turbulence simulation, running live in your browser. Colour shows the electric current <i>J<sub>z</sub></i> flowing into (blue) and out of (red) the screen, and the thin lines are magnetic field lines. The dot is a virtual spacecraft. The panels underneath show what it records as it flies through: the magnetic field components <i>B<sub>x</sub></i> and <i>B<sub>y</sub></i>, and the current. Each sharp jump is a current-sheet crossing.</p>
+      <details>
+        <summary>How this works</summary>
+        <p>It solves the equations of two-dimensional incompressible magnetohydrodynamics on a 128 × 128 periodic grid with a pseudo-spectral method:</p>
+        <p class="eq">∂<sub><i>t</i></sub><i>ψ</i> + <b>u</b>·∇<i>ψ</i> = <i>η</i>∇²<i>ψ</i><br>∂<sub><i>t</i></sub><i>ω</i> + <b>u</b>·∇<i>ω</i> = <b>B</b>·∇<i>J</i> + <i>ν</i>∇²<i>ω</i></p>
+        <p>Here <i>ψ</i> is the magnetic flux function, so field lines are its contours; <i>ω</i> is the vorticity and <i>J</i> = −∇²<i>ψ</i> the current. Colours and traces are scaled by their root-mean-square values. Magnetohydrodynamics treats the plasma as a single fluid, so it misses the ion-scale physics that hybrid particle-in-cell simulations capture, but its current sheets form for the same basic reason: turbulent flows push magnetic field lines together.</p>
+      </details>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer wrap">
+  <p><a href="mailto:devesh.dhole@northumbria.ac.uk">devesh.dhole@northumbria.ac.uk</a></p>
+  <p>© 2026 Devesh Dhole. My PhD is funded by the Royal Society. This site uses no cookies or tracking.</p>
+</footer>
+<script src="fig1.js"></script>
+</body>
+</html>
