@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Devesh Dhole – Space plasma physics, Northumbria University</title>
-<meta name="description" content="Devesh Dhole is a PhD student at Northumbria University studying kinetic plasma turbulence and current sheets in the solar wind with hybrid particle-in-cell simulations and spacecraft data.">
+<title>Devesh Dhole – Solar wind turbulence, Northumbria University</title>
+<meta name="description" content="Devesh Dhole is a PhD student at Northumbria University studying current sheets and kinetic plasma turbulence in the solar wind with hybrid particle-in-cell simulations.">
 <meta name="author" content="Devesh Dhole">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Devesh Dhole – Space plasma physics, Northumbria University">
-<meta property="og:description" content="Devesh Dhole is a PhD student at Northumbria University studying kinetic plasma turbulence and current sheets in the solar wind with hybrid particle-in-cell simulations and spacecraft data.">
+<meta property="og:title" content="Devesh Dhole – Solar wind turbulence, Northumbria University">
+<meta property="og:description" content="Devesh Dhole is a PhD student at Northumbria University studying current sheets and kinetic plasma turbulence in the solar wind with hybrid particle-in-cell simulations.">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0c1220" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230c1220'/%3E%3Cpath d='M5 25C12 21 15 12 27 8' stroke='%23ff7262' stroke-width='3.5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M5 14C9 12 11 8 15 6' stroke='%237fa9ff' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
@@ -20,15 +20,16 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<!-- The header and footer are the same on every page: if you change the menu, change it in all five files. -->
+<!-- The header and footer are the same on every page: if you change the menu, change it in all six files. -->
 <header class="site-header wrap">
   <a class="site-name" href="index.html">Devesh Dhole</a>
   <nav class="site-nav" aria-label="Main">
     <ul>
       <li><a href="index.html" aria-current="page">Home</a></li>
       <li><a href="research.html">Research</a></li>
-      <li><a href="publications.html">Publications</a></li>
       <li><a href="projects.html">Projects</a></li>
+      <li><a href="talks.html">Talks</a></li>
+      <li><a href="s3park.html">S³PARK</a></li>
       <li><a href="about.html">About</a></li>
     </ul>
   </nav>
@@ -38,14 +39,14 @@
   <section class="hero wrap" aria-labelledby="name">
     <div class="intro">
       <h1 id="name">Devesh Dhole</h1>
-      <p class="lead">I study turbulence in the solar wind: how energy cascading down from large scales collapses into thin current sheets near the scales of ions, and what a spacecraft sees when it flies through one.</p>
-      <p class="affil">PhD student in space plasma physics at Northumbria University, Newcastle upon Tyne, working with Luca Franci, Robert Wicks and Emanuele Papini.</p>
-      <!-- EDIT: check the email, put cv.pdf in this folder, and replace the "#" links with your profiles -->
+      <p class="lead">I study turbulence in the solar wind: how energy cascading down from large scales collapses into thin current sheets near the scales of ions, and how those sheets heat the plasma and shape the turbulence.</p>
+      <p class="affil">PhD student in solar astrophysics at Northumbria University, Newcastle upon Tyne, working with Luca Franci, Robert Wicks and Emanuele Papini.</p>
+      <!-- EDIT: the CV link expects a file called CV.pdf in the same folder as this page -->
       <ul class="links">
         <li><a href="mailto:devesh.dhole@northumbria.ac.uk">Email</a></li>
-        <li><a href="cv.pdf">CV (PDF)</a></li>
-        <li><a href="#">ORCID</a></li>
-        <li><a href="#">GitHub</a></li>
+        <li><a href="CV.pdf">CV (PDF)</a></li>
+        <li><a href="https://github.com/DeveshDhole">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/devesh-dhole-7aa314110/">LinkedIn</a></li>
       </ul>
     </div>
 
@@ -66,7 +67,7 @@
         <summary>How this works</summary>
         <p>It solves the equations of two-dimensional incompressible magnetohydrodynamics on a 128 × 128 periodic grid with a pseudo-spectral method:</p>
         <p class="eq">∂<sub><i>t</i></sub><i>ψ</i> + <b>u</b>·∇<i>ψ</i> = <i>η</i>∇²<i>ψ</i><br>∂<sub><i>t</i></sub><i>ω</i> + <b>u</b>·∇<i>ω</i> = <b>B</b>·∇<i>J</i> + <i>ν</i>∇²<i>ω</i></p>
-        <p>Here <i>ψ</i> is the magnetic flux function, so field lines are its contours; <i>ω</i> is the vorticity and <i>J</i> = −∇²<i>ψ</i> the current. Colours and traces are scaled by their root-mean-square values. Magnetohydrodynamics treats the plasma as a single fluid, so it misses the ion-scale physics that hybrid particle-in-cell simulations capture, but its current sheets form for the same basic reason: turbulent flows push magnetic field lines together.</p>
+        <p>Here <i>ψ</i> is the magnetic flux function, so field lines are its contours; <i>ω</i> is the vorticity and <i>J</i> = −∇²<i>ψ</i> the current. The fields are drawn on a 256 × 256 grid by Fourier interpolation, which is exact for a field with no finer structure than the simulation resolves. Colours and traces are scaled by their root-mean-square values. Magnetohydrodynamics treats the plasma as a single fluid, so it misses the ion-scale physics that hybrid particle-in-cell simulations capture, but its current sheets form for the same basic reason: turbulent flows push magnetic field lines together.</p>
       </details>
     </div>
   </section>

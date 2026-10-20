@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Projects – Devesh Dhole</title>
-<meta name="description" content="Things Devesh Dhole has built outside research.">
+<meta name="description" content="Earlier research and study projects by Devesh Dhole.">
 <meta name="author" content="Devesh Dhole">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Projects – Devesh Dhole">
-<meta property="og:description" content="Things Devesh Dhole has built outside research.">
+<meta property="og:description" content="Earlier research and study projects by Devesh Dhole.">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0c1220" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230c1220'/%3E%3Cpath d='M5 25C12 21 15 12 27 8' stroke='%23ff7262' stroke-width='3.5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M5 14C9 12 11 8 15 6' stroke='%237fa9ff' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
@@ -20,15 +20,16 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<!-- The header and footer are the same on every page: if you change the menu, change it in all five files. -->
+<!-- The header and footer are the same on every page: if you change the menu, change it in all six files. -->
 <header class="site-header wrap">
   <a class="site-name" href="index.html">Devesh Dhole</a>
   <nav class="site-nav" aria-label="Main">
     <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="research.html">Research</a></li>
-      <li><a href="publications.html">Publications</a></li>
       <li><a href="projects.html" aria-current="page">Projects</a></li>
+      <li><a href="talks.html">Talks</a></li>
+      <li><a href="s3park.html">S³PARK</a></li>
       <li><a href="about.html">About</a></li>
     </ul>
   </nav>
@@ -37,23 +38,46 @@
 <main id="main" class="page wrap">
   <header class="page-head">
     <h1>Projects</h1>
-    <p class="lead">Things I've built outside research.</p>
+    <p class="lead">Earlier research and study projects.</p>
   </header>
 
-  <!-- EDIT: point the "Code on GitHub" links at your repositories -->
-  <section class="row" aria-labelledby="transformer">
-    <h2 id="transformer">Transformer from scratch</h2>
+  <section class="row" aria-labelledby="gravity">
+    <h2 id="gravity">Modified gravity with neural networks</h2>
     <div class="row-body">
-      <p>A small transformer language model, written from scratch to understand attention and training from the inside.</p>
-      <p class="row-link"><a href="#">Code on GitHub</a></p>
+      <p class="row-meta">Master's thesis at IIT Bombay with S. Shankaranarayanan, 2023–2024</p>
+      <p>I used physics-informed neural networks, built with NeuroDiffEq, to solve Einstein's equations in modified theories of gravity. Studying spherically symmetric vacuum solutions, I found signs that classical results such as Birkhoff's theorem and the no-hair theorem can fail outside general relativity, and found a non-singular, Schwarzschild-like black hole solution in Stelle gravity. Work continues on what its signatures in gravitational-wave data would be.</p>
     </div>
   </section>
 
-  <section class="row" aria-labelledby="moon">
-    <h2 id="moon">Moon phase app</h2>
+  <section class="row" aria-labelledby="magnetars">
+    <h2 id="magnetars">Recent discoveries in magnetar physics</h2>
     <div class="row-body">
-      <p>An Android app in Kotlin and Jetpack Compose that computes the Moon's phase and illumination with the algorithms in Jean Meeus's <i>Astronomical Algorithms</i>.</p>
-      <p class="row-link"><a href="#">Code on GitHub</a></p>
+      <p class="row-meta">Course project at IIT Bombay with Archana Pai, 2023</p>
+      <p>A study of what magnetars do, from X-ray activity and short and long bursts to giant flares, quasi-periodic oscillations, glitches and anti-glitches, and of how observations and simulations explain it.</p>
+    </div>
+  </section>
+
+  <section class="row" aria-labelledby="coronal">
+    <h2 id="coronal">Detecting coronal holes with a neural network</h2>
+    <div class="row-body">
+      <p class="row-meta">ARIES, Nainital, with Dipankar Banerjee, 2023</p>
+      <p>I implemented a U-Net, a convolutional neural network, to pick out coronal holes in SDO/AIA 193 Å images and HMI magnetograms, and evaluated it with intersection over union and binary cross-entropy.</p>
+    </div>
+  </section>
+
+  <section class="row" aria-labelledby="threebody">
+    <h2 id="threebody">Three-body dynamics in Python</h2>
+    <div class="row-body">
+      <p class="row-meta">Krittika, IIT Bombay's astronomy club, 2022</p>
+      <p>I derived the Lagrange points, zero-velocity curves and Poincaré maps of the three-body problem, then simulated particles nudged away from the Lagrange points with the Euler–Richardson method to check that they stay inside the zero-velocity curves.</p>
+    </div>
+  </section>
+
+  <section class="row" aria-labelledby="jets">
+    <h2 id="jets">Jets from active galactic nuclei</h2>
+    <div class="row-body">
+      <p class="row-meta">IIT Indore with Bhargav Vaidya, 2021</p>
+      <p>I ran MHD simulations of extragalactic jets with the PLUTO code on an HPC cluster, and injected Lagrangian particles to compute their non-thermal synchrotron emission at different viewing angles. Comparing that emission with observations constrained the simulation parameters. I visualised the results with VisIt and ParaView.</p>
     </div>
   </section>
 </main>

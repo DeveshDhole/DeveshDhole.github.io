@@ -234,6 +234,40 @@ function createMHD(N, opts) {
            fy * ((1 - fx) * field[j1 * N + i0] + fx * field[j1 * N + i1]);
   };
 
+  // Band-limited (Fourier) interpolation of J and ψ onto an M×M grid, for drawing.
+  let disp = null;
+  sim.upsample = function (M) {
+    if (!disp || disp.M !== M) {
+      const rows = [];
+      for (let j = 0; j < M; j++) { const ky = j < M / 2 ? j : j - M; if (Math.abs(ky) <= kc) rows.push(j); }
+      disp = { M, fft: createFFT(M), re: new Float64Array(M * M), im: new Float64Array(M * M),
+               tr: new Float64Array(M), ti: new Float64Array(M), rows };
+    }
+    const D = disp, re = D.re, im = D.im, scale = (M * M) / NN;
+    re.fill(0); im.fill(0);
+    for (let m = 0; m < NN; m++) {
+      if (MASK[m] === 0) continue;
+      const kx = KX[m], ky = KY[m];
+      const d = (ky < 0 ? ky + M : ky) * M + (kx < 0 ? kx + M : kx);
+      re[d] = (pr[m] * K2[m] - pi[m]) * scale;      // J + iψ, packed as in nonlinear()
+      im[d] = (pi[m] * K2[m] + pr[m]) * scale;
+    }
+    const f = D.fft, a = D.tr, b = D.ti;
+    for (let r = 0; r < D.rows.length; r++) {        // rows with |ky| > kc are zero: skip them
+      const off = D.rows[r] * M;
+      for (let i = 0; i < M; i++) { a[i] = re[off + i]; b[i] = im[off + i]; }
+      f(a, b, true);
+      for (let i = 0; i < M; i++) { re[off + i] = a[i]; im[off + i] = b[i]; }
+    }
+    const inv = 1 / (M * M);
+    for (let i = 0; i < M; i++) {
+      for (let j = 0, q = i; j < M; j++, q += M) { a[j] = re[q]; b[j] = im[q]; }
+      f(a, b, true);
+      for (let j = 0, q = i; j < M; j++, q += M) { re[q] = a[j] * inv; im[q] = b[j] * inv; }
+    }
+    return D;   // D.re = J and D.im = ψ on the M×M grid
+  };
+
   return sim;
 }
 
@@ -248,6 +282,7 @@ function createMHD(N, opts) {
 
   // ---- settings -------------------------------------------------------------
   const N = 128;
+  const M = 256;             // drawing grid: the fields are Fourier-interpolated onto it
   const SIM = { dt: 0.006, nu: 1e-3, eta: 1e-3, nu4: 4e-6, eta4: 4e-6, k0: 2.5, u0: 0.6, b0: 0.6 };
   const FIRST_SEED = 7;
   const RATE = 0.15;         // simulation time per second of wall-clock time
@@ -340,14 +375,14 @@ function createMHD(N, opts) {
   // ---- geometry -------------------------------------------------------------
   let W = 0, H = 0, dpr = 1, G = null;
   const heat = document.createElement('canvas');
-  heat.width = N; heat.height = N;
+  heat.width = M; heat.height = M;
   const heatCtx = heat.getContext('2d');
-  const heatImg = heatCtx.createImageData(N, N);
+  let heatImg = heatCtx.createImageData(M, M);
 
   function layout() {
     const w = Math.round(canvas.parentElement.getBoundingClientRect().width);
     if (!w) return false;
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    dpr = Math.min(window.devicePixelRatio || 1, maxDpr);
     const padL = 46, padR = 46, padT = 26;
     const P = Math.max(150, w - padL - padR);
     const hP = Math.round(Math.max(54, Math.min(84, P * 0.18)));
@@ -388,13 +423,14 @@ function createMHD(N, opts) {
   }
 
   // ---- drawing ----------------------------------------------------------------
-  function drawHeatmap() {
+  function drawHeatmap(J, g) {
     const { x0, P, yMap } = G;
-    const J = sim.J, d = heatImg.data, k = 1 / (CLIP * jrms), top = LUT_SIZE - 1;
-    for (let j = 0; j < N; j++) {
-      const row = (N - 1 - j) * N;
-      for (let i = 0; i < N; i++) {
-        let b = ((J[j * N + i] * k + 1) * 0.5 * top + 0.5) | 0;
+    if (heat.width !== g) { heat.width = g; heat.height = g; heatImg = heatCtx.createImageData(g, g); }
+    const d = heatImg.data, k = 1 / (CLIP * jrms), top = LUT_SIZE - 1;
+    for (let j = 0; j < g; j++) {
+      const row = (g - 1 - j) * g;
+      for (let i = 0; i < g; i++) {
+        let b = ((J[j * g + i] * k + 1) * 0.5 * top + 0.5) | 0;
         if (b < 0) b = 0; else if (b > top) b = top;
         const o = (row + i) * 4, l = b * 3;
         d[o] = LUT[l]; d[o + 1] = LUT[l + 1]; d[o + 2] = LUT[l + 2]; d[o + 3] = 255;
@@ -402,15 +438,15 @@ function createMHD(N, opts) {
     }
     heatCtx.putImageData(heatImg, 0, 0);
     ctx.imageSmoothingEnabled = true;
-    ctx.imageSmoothingQuality = 'high';
     ctx.drawImage(heat, x0, yMap, P, P);
   }
 
   // Marching squares on the periodic grid: field lines are contours of ψ.
   const SEGMENTS = [null, [3, 0], [0, 1], [3, 1], [1, 2], null, [0, 2], [3, 2], [2, 3], [0, 2], null, [1, 2], [3, 1], [0, 1], [3, 0], null];
-  function drawFieldLines() {
+  function drawFieldLines(g) {
     const { x0, P, yMap } = G;
-    const psi = sim.psi, s = P / N, d = levelStep, off = 0.5 * levelStep;
+    // contours come from the simulation grid; `half` lines them up with the pixel centres of the colour map
+    const psi = sim.psi, s = P / N, d = levelStep, off = 0.5 * levelStep, half = 0.5 * N / g;
     let ex = 0, ey = 0;
     let i = 0, j = 0, v0 = 0, v1 = 0, v2 = 0, v3 = 0, lv = 0, wx = false, wy = false;
     function edge(e) {
@@ -421,7 +457,7 @@ function createMHD(N, opts) {
         default: ex = i; ey = j + (lv - v0) / (v3 - v0);
       }
     }
-    const X = gx => x0 + (gx + 0.5) * s, Y = gy => yMap + P - (gy + 0.5) * s;
+    const X = gx => x0 + (gx + half) * s, Y = gy => yMap + P - (gy + half) * s;
     function seg(ea, eb) {
       edge(ea); const ax = ex, ay = ey;
       edge(eb); const bx = ex, by = ey;
@@ -461,11 +497,11 @@ function createMHD(N, opts) {
     ctx.restore();
   }
 
-  function drawSpacecraft() {
+  function drawSpacecraft(g) {
     const { x0, P, yMap } = G;
-    const s = P / N, dx = sim.dx;
-    const cx = x => x0 + ((x / dx + 0.5) % N) * s;
-    const cy = y => yMap + P - ((y / dx + 0.5) % N) * s;
+    const s = P / g, dx = TWO_PI / g;
+    const cx = x => x0 + ((x / dx + 0.5) % g) * s;
+    const cy = y => yMap + P - ((y / dx + 0.5) % g) * s;
     ctx.save();
     ctx.beginPath(); ctx.rect(x0, yMap, P, P); ctx.clip();
     ctx.beginPath();
@@ -608,16 +644,17 @@ function createMHD(N, opts) {
     if (!G || !theme) return;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, W, H);
-    drawHeatmap();
-    if (showLines) drawFieldLines();
-    drawSpacecraft();
+    const g = fine ? M : N;
+    drawHeatmap(fine ? sim.upsample(M).re : sim.J, g);
+    if (showLines) drawFieldLines(g);
+    drawSpacecraft(g);
     drawMapAxes();
     drawColorbar();
     drawPanels();
   }
 
   // ---- running ----------------------------------------------------------------
-  let running = false, loopId = 0, userPaused = false, onScreen = true, lastNow = 0, acc = 0, showLines = true, fading = false;
+  let running = false, loopId = 0, userPaused = false, onScreen = true, lastNow = 0, acc = 0, showLines = true, fading = false, fine = true, maxDpr = 2, frameMs = 16, frames = 0;
 
   function shouldRun() { return !userPaused && onScreen && !document.hidden; }
   function update() {
@@ -635,7 +672,11 @@ function createMHD(N, opts) {
   function frame(now, id) {
     if (!running || id !== loopId) return;
     const wall = Math.min(0.1, Math.max(0, (now - lastNow) / 1000));
+    frameMs += (now - lastNow - frameMs) * 0.1;
     lastNow = now;
+    if (fine && ++frames > 90 && frameMs > 45) {   // a device that can't keep up draws at the simulation's own resolution
+      fine = false; maxDpr = 1; layout();
+    }
     acc += wall * (sim.t < FAST_UNTIL ? FAST_RATE : RATE);
     const start = performance.now();
     let steps = 0;

@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Research – Devesh Dhole</title>
-<meta name="description" content="Current sheets in kinetic plasma turbulence, and virtual spacecraft flown through hybrid-PIC simulations.">
+<meta name="description" content="Current sheets in hybrid simulations of decaying turbulence, and GRMHD simulations of accretion discs.">
 <meta name="author" content="Devesh Dhole">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Research – Devesh Dhole">
-<meta property="og:description" content="Current sheets in kinetic plasma turbulence, and virtual spacecraft flown through hybrid-PIC simulations.">
+<meta property="og:description" content="Current sheets in hybrid simulations of decaying turbulence, and GRMHD simulations of accretion discs.">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0c1220" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230c1220'/%3E%3Cpath d='M5 25C12 21 15 12 27 8' stroke='%23ff7262' stroke-width='3.5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M5 14C9 12 11 8 15 6' stroke='%237fa9ff' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
@@ -20,15 +20,16 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<!-- The header and footer are the same on every page: if you change the menu, change it in all five files. -->
+<!-- The header and footer are the same on every page: if you change the menu, change it in all six files. -->
 <header class="site-header wrap">
   <a class="site-name" href="index.html">Devesh Dhole</a>
   <nav class="site-nav" aria-label="Main">
     <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="research.html" aria-current="page">Research</a></li>
-      <li><a href="publications.html">Publications</a></li>
       <li><a href="projects.html">Projects</a></li>
+      <li><a href="talks.html">Talks</a></li>
+      <li><a href="s3park.html">S³PARK</a></li>
       <li><a href="about.html">About</a></li>
     </ul>
   </nav>
@@ -37,21 +38,30 @@
 <main id="main" class="page wrap">
   <header class="page-head">
     <h1>Research</h1>
-    <p class="lead">The solar wind is a turbulent, almost collisionless plasma that spacecraft can measure from the inside, which makes it a natural laboratory for turbulence in space. My PhD combines kinetic simulations with those measurements to understand where turbulent energy goes at the smallest scales.</p>
+    <p class="lead">I work on simulations of magnetised plasmas, from turbulence in the solar wind to accretion discs around black holes.</p>
   </header>
 
   <section class="row" aria-labelledby="sheets">
-    <h2 id="sheets">Finding current sheets</h2>
+    <h2 id="sheets">Current sheets in decaying turbulence</h2>
     <div class="row-body">
-      <p>Turbulence in a collisionless plasma doesn't dissipate evenly. It concentrates into thin, intense current sheets, where magnetic energy is turned into heat and fast particles. I run hybrid particle-in-cell simulations with the CAMELIA code on the COSMA supercomputer in Durham, and compare methods for detecting these sheets automatically and measuring how thick they are.</p>
-      <p>One question I'm working on is how their properties change with plasma beta, the ratio of thermal to magnetic pressure.</p>
+      <p class="row-meta">PhD at Northumbria University, since March 2025</p>
+      <p>Turbulence in a collisionless plasma doesn't dissipate evenly. It concentrates into thin, intense current sheets, where the magnetic field changes direction sharply and magnetic energy is turned into heat and fast particles. I run large hybrid particle-in-cell simulations with the CAMELIA code, which treats ions as particles and electrons as a fluid, on DiRAC supercomputers. The aim is to understand the role these sheets play in decaying solar-wind turbulence, and to link their properties to magnetic reconnection, plasma heating, intermittency and the break in the turbulent spectrum at ion scales.</p>
+      <p>So far I've measured how current-sheet statistics depend on the ion and electron plasma beta, which I presented at <a href="talks.html">NAM 2026 and the S³PARK workshop</a>. At a DiRAC hackathon in 2026 I also ported key parts of CAMELIA to AMD GPUs.</p>
     </div>
   </section>
 
-  <section class="row" aria-labelledby="spacecraft">
-    <h2 id="spacecraft">Virtual spacecraft</h2>
+  <section class="row" aria-labelledby="discs">
+    <h2 id="discs">Accretion discs in general relativity</h2>
     <div class="row-body">
-      <p>A spacecraft records a single line through the plasma as it streams past. To compare simulations with Parker Solar Probe, Solar Orbiter and MMS on equal terms, I fly virtual spacecraft through simulation boxes and analyse the resulting time series with the same tools used on real data. The <a href="index.html#fig1">simulation on the home page</a> is a small version of the idea.</p>
+      <p class="row-meta">Long-term visiting student at ICTS-TIFR, Bengaluru, since August 2024</p>
+      <p>With Prayush Kumar, I'm developing general-relativistic MHD simulations of a magnetised Fishbone–Moncrief accretion disc with the SpECTRE code, and checking their physical consistency and stability against the BHAC code. SpECTRE combines finite-difference and discontinuous Galerkin methods, which we're using to make simulations of relativistic flows faster, more accurate and more scalable.</p>
+    </div>
+  </section>
+
+  <section class="row" aria-labelledby="interests">
+    <h2 id="interests">Interests</h2>
+    <div class="row-body">
+      <p>High-energy astrophysical systems such as accretion discs, modelled with GRMHD and MHD simulations; machine learning for astrophysics, from image classification to simulations and gravitational-wave analysis; tests of modified gravity with the quasi-normal-mode frequencies of merging compact binaries; and turbulence in collisionless plasmas like the solar wind.</p>
     </div>
   </section>
 </main>

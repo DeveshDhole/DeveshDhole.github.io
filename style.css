@@ -134,22 +134,25 @@ sub { font-size: 0.72em; line-height: 0; }
   margin: 0;
 }
 .page-head .lead { margin: 1.25rem 0 0; }
+.page-head .lead + .lead { margin-top: 0.75rem; }
 .row { display: grid; gap: 0.5rem 3rem; padding-block: 2rem 2.25rem; border-top: 1px solid var(--rule); }
 @media (min-width: 56rem) { .row { grid-template-columns: 14rem minmax(0, 1fr); } }
 .row h2 { font: 500 1.25rem/1.4 var(--serif); margin: 0; }
 .row-body { max-width: 41rem; }
 .row-body > :last-child { margin-bottom: 0; }
-.row-link a { font: 500 1rem/1.5 var(--sans); }
+.row-meta { font: 400 0.9375rem/1.5 var(--sans); color: var(--slate); margin: 0 0 0.5rem; }
+.row-link a, .entry-links a { font: 500 0.9375rem/1.5 var(--sans); }
 
 .entries { list-style: none; margin: 0; padding: 0; }
-.entry { display: grid; grid-template-columns: 3.25rem minmax(0, 1fr); gap: 1rem; }
-.entry + .entry { margin-top: 1rem; }
+.entry { display: grid; grid-template-columns: 4.5rem minmax(0, 1fr); gap: 1rem; }
+.entry + .entry { margin-top: 1.25rem; }
 .entry-year { font: 500 0.9375rem/1.75 var(--sans); color: var(--slate); font-variant-numeric: tabular-nums; }
 .entry p { margin: 0; }
 .entry-meta { color: var(--slate); font-size: 1rem; }
+.entry-links { margin-top: 0.2rem; }
 
 .email { font-size: clamp(1.25rem, 2.6vw, 1.625rem); line-height: 1.3; margin-bottom: 1.25rem; overflow-wrap: anywhere; }
-address { font-style: normal; color: var(--slate); }
+address { font-style: normal; color: var(--slate); margin-bottom: 1rem; }
 
 /* footer */
 .site-footer {
