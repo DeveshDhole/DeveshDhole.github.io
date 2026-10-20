@@ -144,6 +144,14 @@ sub { font-size: 0.72em; line-height: 0; }
 .row-meta { font: 400 0.9375rem/1.5 var(--sans); color: var(--slate); margin: 0 0 0.5rem; }
 .row-link a { font: 500 0.9375rem/1.5 var(--sans); }
 
+/* people */
+.person-head { display: flex; flex-direction: column; align-items: flex-start; gap: 0.875rem; }
+.person-photo { display: block; width: 8.5rem; height: 8.5rem; object-fit: cover; border-radius: 8px; background: var(--rule); }
+@media (max-width: 55.99rem) {
+  .person-head { flex-direction: row; align-items: center; gap: 1rem; }
+  .person-photo { order: -1; width: 4.75rem; height: 4.75rem; }
+}
+
 /* simulation images */
 .shot { margin: 0; }
 .shot + .shot { margin-top: 3rem; }
