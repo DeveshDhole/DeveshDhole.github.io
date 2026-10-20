@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Research – Devesh Dhole</title>
-<meta name="description" content="Current sheets in hybrid simulations of decaying turbulence, and GRMHD simulations of accretion discs.">
+<meta name="description" content="Current sheets in hybrid simulations of solar-wind turbulence, images from the simulations, and GRMHD simulations of accretion discs.">
 <meta name="author" content="Devesh Dhole">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Research – Devesh Dhole">
-<meta property="og:description" content="Current sheets in hybrid simulations of decaying turbulence, and GRMHD simulations of accretion discs.">
+<meta property="og:description" content="Current sheets in hybrid simulations of solar-wind turbulence, images from the simulations, and GRMHD simulations of accretion discs.">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0c1220" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230c1220'/%3E%3Cpath d='M5 25C12 21 15 12 27 8' stroke='%23ff7262' stroke-width='3.5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M5 14C9 12 11 8 15 6' stroke='%237fa9ff' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
@@ -38,15 +38,42 @@
 <main id="main" class="page wrap">
   <header class="page-head">
     <h1>Research</h1>
-    <p class="lead">I work on simulations of magnetised plasmas, from turbulence in the solar wind to accretion discs around black holes.</p>
+    <p class="lead">My PhD is about turbulence in the solar wind: how energy cascades down to the smallest scales of a collisionless plasma, and what current sheets do there. Alongside it, I also simulate accretion discs around black holes.</p>
   </header>
 
   <section class="row" aria-labelledby="sheets">
     <h2 id="sheets">Current sheets in decaying turbulence</h2>
     <div class="row-body">
       <p class="row-meta">PhD at Northumbria University, since March 2025</p>
-      <p>Turbulence in a collisionless plasma doesn't dissipate evenly. It concentrates into thin, intense current sheets, where the magnetic field changes direction sharply and magnetic energy is turned into heat and fast particles. I run large hybrid particle-in-cell simulations with the CAMELIA code, which treats ions as particles and electrons as a fluid, on DiRAC supercomputers. The aim is to understand the role these sheets play in decaying solar-wind turbulence, and to link their properties to magnetic reconnection, plasma heating, intermittency and the break in the turbulent spectrum at ion scales.</p>
+      <p>Turbulence in a collisionless plasma doesn't dissipate evenly. It concentrates into thin, intense current sheets, where the magnetic field changes direction sharply and magnetic energy is turned into heat and fast particles. I run large hybrid particle-in-cell simulations with the CAMELIA code, which treats ions as particles and electrons as a fluid, on DiRAC's COSMA8 supercomputer in Durham. The aim is to understand the role these sheets play in decaying solar-wind turbulence, and to link their properties to magnetic reconnection, plasma heating, intermittency and the break in the turbulent spectrum at ion scales.</p>
       <p>So far I've measured how current-sheet statistics depend on the ion and electron plasma beta, which I presented at <a href="talks.html">NAM 2026 and the S³PARK workshop</a>. At a DiRAC hackathon in 2026 I also ported key parts of CAMELIA to AMD GPUs.</p>
+    </div>
+  </section>
+
+  <section class="row" id="images" aria-labelledby="images-h">
+    <h2 id="images-h">Images from my simulations</h2>
+    <div class="row-body wide">
+      <figure class="shot" id="islands">
+        <a href="images/islands-full.jpg" target="_blank" rel="noopener" aria-describedby="new-tab">
+          <img src="images/islands.jpg" srcset="images/islands-800.jpg 800w, images/islands.jpg 1600w"
+               sizes="(min-width: 56rem) 52rem, 100vw" width="1600" height="1403" loading="lazy" alt="Map of electric current in a turbulent plasma simulation, in orange and blue on black, with four corner panels following one current sheet over time as it thins, tears and breaks into a chain of magnetic islands.">
+        </a>
+        <figcaption><span class="shot-title">Conjuring Islands from Solar Wind</span> The Sun blows magnetised plasma into space, where it churns turbulently. Our CAMELIA simulation, run on DiRAC’s COSMA8 system, tracks ions as individual particles and electrons as a fluid. Colours show electric current flowing into and out of the simulation plane. Turbulence squeezes the current into thin sheets. The corner panels follow one such sheet as it thins and tears, allowing magnetic field lines to break and reconnect through magnetic reconnection, releasing energy as jets and heat. The sheet splits into a chain of magnetic islands. Later, reconnection occurs again at the edge of one island, triggering secondary reconnection and spawning a new generation of islands.</figcaption>
+      </figure>
+      <figure class="shot" id="clock">
+        <a href="images/clock-full.jpg" target="_blank" rel="noopener" aria-describedby="new-tab">
+          <img src="images/clock.jpg" srcset="images/clock-800.jpg 800w, images/clock.jpg 1600w"
+               sizes="(min-width: 56rem) 52rem, 100vw" width="1600" height="1309" loading="lazy" alt="Clock-like image of a turbulent plasma simulation: wedges showing the same square of plasma at successive times are arranged clockwise around a central dot, with current sheets in orange and blue on black growing finer around the dial.">
+        </a>
+        <figcaption><span class="shot-title">The Turbulent Clock</span> This ‘clock’ shows a turbulent plasma, like the solar wind, evolving through time. We simulated it using the hybrid-PIC code CAMELIA on DiRAC’s COSMA8 system, tracking the plasma’s ions as individual particles and its electrons as a fluid. Colours show electric current flowing into and out of the simulation plane. Each thin wedge is a snapshot of the same square of plasma at a later moment, arranged clockwise from 12 o’clock like the hands of a clock. Sweeping around the dial, you can watch thin sheets of current form, stretch, and break apart as the turbulence evolves.</figcaption>
+      </figure>
+      <figure class="shot" id="rings">
+        <a href="images/rings-full.jpg" target="_blank" rel="noopener" aria-describedby="new-tab">
+          <img src="images/rings.jpg" srcset="images/rings-800.jpg 800w, images/rings.jpg 1600w"
+               sizes="(min-width: 56rem) 52rem, 100vw" width="1600" height="1308" loading="lazy" alt="Concentric rings from a turbulent plasma simulation, each ring a later snapshot of the electric current in orange and blue on black, with the earliest time at the centre and the latest at the edge.">
+        </a>
+        <figcaption><span class="shot-title">The Growth Rings of Turbulence</span> Like the growth rings of a tree, each ring in this image records a moment in the life of a turbulent plasma, such as the solar wind. The simulation, run with the hybrid-PIC code CAMELIA on DiRAC’s COSMA8 system in Durham, tracks the plasma’s ions as individual particles and electrons as a fluid. Colours show electric current flowing into and out of the simulation plane. Time runs outwards, with the centre representing the earliest snapshot and the edge the latest. Where neighbouring rings line up, structures persist, while where they jump, the turbulence has reshaped as it evolved.</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -61,7 +88,7 @@
   <section class="row" aria-labelledby="interests">
     <h2 id="interests">Interests</h2>
     <div class="row-body">
-      <p>High-energy astrophysical systems such as accretion discs, modelled with GRMHD and MHD simulations; machine learning for astrophysics, from image classification to simulations and gravitational-wave analysis; tests of modified gravity with the quasi-normal-mode frequencies of merging compact binaries; and turbulence in collisionless plasmas like the solar wind.</p>
+      <p>Turbulence in collisionless plasmas like the solar wind, studied with particle-in-cell simulations; high-energy astrophysical systems such as accretion discs, modelled with GRMHD and MHD simulations; machine learning for astrophysics, from image classification to simulations and gravitational-wave analysis; and tests of modified gravity with the quasi-normal-mode frequencies of merging compact binaries.</p>
     </div>
   </section>
 </main>
@@ -70,5 +97,6 @@
   <p><a href="mailto:devesh.dhole@northumbria.ac.uk">devesh.dhole@northumbria.ac.uk</a></p>
   <p>© 2026 Devesh Dhole. My PhD is funded by the Royal Society. This site uses no cookies or tracking.</p>
 </footer>
+<span id="new-tab" hidden>Opens in a new tab</span>
 </body>
 </html>

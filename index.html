@@ -44,9 +44,9 @@
       <!-- EDIT: the CV link expects a file called CV.pdf in the same folder as this page -->
       <ul class="links">
         <li><a href="mailto:devesh.dhole@northumbria.ac.uk">Email</a></li>
-        <li><a href="CV.pdf">CV (PDF)</a></li>
-        <li><a href="https://github.com/DeveshDhole">GitHub</a></li>
-        <li><a href="https://www.linkedin.com/in/devesh-dhole-7aa314110/">LinkedIn</a></li>
+        <li><a href="CV.pdf" target="_blank" rel="noopener" aria-describedby="new-tab">CV (PDF)</a></li>
+        <li><a href="https://github.com/DeveshDhole" target="_blank" rel="noopener" aria-describedby="new-tab">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/devesh-dhole-7aa314110/" target="_blank" rel="noopener" aria-describedby="new-tab">LinkedIn</a></li>
       </ul>
     </div>
 
@@ -67,7 +67,7 @@
         <summary>How this works</summary>
         <p>It solves the equations of two-dimensional incompressible magnetohydrodynamics on a 128 × 128 periodic grid with a pseudo-spectral method:</p>
         <p class="eq">∂<sub><i>t</i></sub><i>ψ</i> + <b>u</b>·∇<i>ψ</i> = <i>η</i>∇²<i>ψ</i><br>∂<sub><i>t</i></sub><i>ω</i> + <b>u</b>·∇<i>ω</i> = <b>B</b>·∇<i>J</i> + <i>ν</i>∇²<i>ω</i></p>
-        <p>Here <i>ψ</i> is the magnetic flux function, so field lines are its contours; <i>ω</i> is the vorticity and <i>J</i> = −∇²<i>ψ</i> the current. The fields are drawn on a 256 × 256 grid by Fourier interpolation, which is exact for a field with no finer structure than the simulation resolves. Colours and traces are scaled by their root-mean-square values. Magnetohydrodynamics treats the plasma as a single fluid, so it misses the ion-scale physics that hybrid particle-in-cell simulations capture, but its current sheets form for the same basic reason: turbulent flows push magnetic field lines together.</p>
+        <p>Here <i>ψ</i> is the magnetic flux function, so field lines are its contours; <i>ω</i> is the vorticity and <i>J</i> = −∇²<i>ψ</i> the current. The fields are drawn on a 256 × 256 grid by Fourier interpolation, which is exact for a field with no finer structure than the simulation resolves. Colours and traces are scaled by their root-mean-square values. Magnetohydrodynamics treats the plasma as a single fluid, so it misses the ion-scale physics that hybrid particle-in-cell simulations capture, but its current sheets form for the same basic reason: turbulent flows push magnetic field lines together. For the real thing, see the <a href="research.html#images">images from my simulations</a>.</p>
       </details>
     </div>
   </section>
@@ -77,6 +77,7 @@
   <p><a href="mailto:devesh.dhole@northumbria.ac.uk">devesh.dhole@northumbria.ac.uk</a></p>
   <p>© 2026 Devesh Dhole. My PhD is funded by the Royal Society. This site uses no cookies or tracking.</p>
 </footer>
+<span id="new-tab" hidden>Opens in a new tab</span>
 <script src="fig1.js"></script>
 </body>
 </html>
